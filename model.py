@@ -74,5 +74,26 @@ class ActorCriticModel(nn.Module):
         # Put model in training mode
         self.train()
         
-    
+    def forward(self, inputs):
+        state, (lstm_h, lstm_c) = inputs
         
+        # Convolutions with ELU activations
+        x = F.elu(self.conv1(inputs))
+        x = F.elu(self.conv2(x))
+        x = F.elu(self.conv3(x))
+        x = F.elu(self.conv4(x))
+        
+        # Flatten
+        x = x.view(-1, 32*3*3)
+        
+        #LSTM
+        (lstm_h, lstm_c)  = self.lstm(x, (lstm_h, lstm_c))
+        x = lstm_h
+        
+        # Critic
+        x_critic = self.critic(x)
+        
+        # Actor
+        x_actor = self.actor(x)
+        
+        return x_critic, x_actor, (lstm_h, lstm_c)
