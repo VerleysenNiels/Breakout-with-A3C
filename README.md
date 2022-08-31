@@ -2,6 +2,8 @@
 
 Following along the final section of this course: https://www.udemy.com/course/artificial-intelligence-az/
 
+NOTE: the course is quite old and therefore based on deprecated libraries. I have tried to fix this in Google Colab, but to no avail (notebook is in this repo if someone really wants to take the challenge). The best solution would be to rewrite the code with more modern versions of these libraries.
+
 In this section the A3C algorithm is explained and applied to the breakout game in gym. The algorithm was introduced in 2016, so it has since been surpassed by newer approaches. I had partly finished this course back in 2017, but then forgot about it. So here I am completing the course. 
 
 ## A3C algorithm
