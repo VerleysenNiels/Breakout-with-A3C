@@ -6,7 +6,7 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 
 from environment import create_atari_env
-from model import ActorCritic
+from model import ActorCriticModel
 
 
 def test(rank, params, shared_model):
@@ -18,7 +18,7 @@ def test(rank, params, shared_model):
     env.seed(params.seed + rank)
     
     # Create model
-    model = ActorCritic(env.observation_space.shape[0], env.action_space)
+    model = ActorCriticModel(env.observation_space.shape[0], env.action_space.n)
     model.eval()
     
     # Init state

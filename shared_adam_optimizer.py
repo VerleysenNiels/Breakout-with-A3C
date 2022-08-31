@@ -9,8 +9,8 @@ class SharedAdam(optim.Adam):
             for p in group['params']:
                 state = self.state[p]
                 state['step'] = torch.zeros(1) # We are at step 0
-                state['exp_avg'] = p.data.new().resize_as_(p.data).zero() # Init momentum to 0
-                state['exp_avg_sq'] = p.data.new().resize_as_(p.data).zero() # Init average squared update to 0
+                state['exp_avg'] = p.data.new().resize_as_(p.data).zero_() # Init momentum to 0
+                state['exp_avg_sq'] = p.data.new().resize_as_(p.data).zero_() # Init average squared update to 0
                 
     def share_memory(self):
         for group in self.param_groups:

@@ -9,7 +9,7 @@ import torch.nn.functional as F
 # Random weight initializer
 def normalized_columns_initializer(weights, stdev=1.0):
     normalized_weights = torch.randn(weights.size())
-    normalized_weights *= stdev / torch.sqrt(normalized_weights.pow(2).sum(1).expand_as(normalized_weights))  # Variance of the normalized columns is now stdev^2
+    normalized_weights *= stdev / torch.sqrt(normalized_weights.unsqueeze(-1).pow(2).sum(1).expand_as(normalized_weights))  # Variance of the normalized columns is now stdev^2
     return normalized_weights
 
 
